@@ -1,5 +1,5 @@
 # Project Background & Overview
-High employee turnover is expensive and disruptive for any company. This project analyzes the workforce data of **1,470** employees to understand why people are leaving the organization. By looking at attrition (employees leaving) across departments, age groups, and education levels, HR leadership can create better strategies to keep their top talent and improve job satisfaction.
+Lending is the core revenue driver for banks, but it is also the primary source of risk. This project analyzes a comprehensive loan dataset to monitor the health of the lending portfolio. By evaluating loan applications, funded amounts, and repayment patterns, the bank can identify "Good" vs. "Bad" loans, track seasonal trends, and adjust lending policies to ensure long-term profitability.
 
 **Key Business Questions:**
 * Which department and education field are experiencing the highest number of employees leaving?
