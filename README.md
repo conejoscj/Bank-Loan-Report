@@ -37,6 +37,9 @@ The bank has processed a high volume of applications, with a clear distinction b
 **Overview**
 ![Dashboard Overview](images/bl.overview.png)
 
+**Details**
+![Dashboard Overview](images/bl.details.png)
+
 # Insights Deep Dive
 ### Regional Hotspots & Lending Gaps
 * Certain states show significantly higher application volumes and funded amounts than others.
@@ -47,6 +50,7 @@ The bank has processed a high volume of applications, with a clear distinction b
 ### Loan Purpose: Debt Consolidation Dominance
   * "Debt Consolidation" is typically the #1 reason for loan applications, often carrying higher average loan amounts.
   * Borrowers using loans to pay off other debts represent a "revolving risk." While they are a large customer segment, their DTI ratios must be monitored closely to prevent "Bad Loan" spikes.
+    
 ![Dashboard Overview](images/bl.debt.png)
 
 ### The Impact of Home Ownership on Risk
