@@ -2,59 +2,67 @@
 Lending is the core revenue driver for banks, but it is also the primary source of risk. This project analyzes a comprehensive loan dataset to monitor the health of the lending portfolio. By evaluating loan applications, funded amounts, and repayment patterns, the bank can identify "Good" vs. "Bad" loans, track seasonal trends, and adjust lending policies to ensure long-term profitability.
 
 **Key Business Questions:**
-* Which department and education field are experiencing the highest number of employees leaving?
-* Is attrition higher among a specific age group or gender?
-* Does a low job satisfaction rating in specific roles (like Sales or Lab Techs) directly lead to higher turnover?
+* What is the total funded amount versus the total amount received back from borrowers?
+* What percentage of our loans are "Bad Loans" (Charged Off), and how does this impact our bottom line?
+* Are there specific months where loan applications spike or where repayment rates drop?
+* How do factors like home ownership, employment length, and loan purpose (e.g., debt consolidation, home improvement) affect loan stability?
 
 # Data Structure Overview
-The data tracks individual employee profiles and their current status within the company.
+The data tracks the lifecycle of each loan from application to final repayment.
 
 * **Source:** Kaggle Public Dataset
-* **Employee Profile:** Age, Gender, Education Field, and Education Level.
-* **Employment Details:** Job Role, Department, and Active/Inactive status.
-* **Sentiment Data** Job Satisfaction Ratings (Scale of 1–4).
-
+* **Loan Details:** ID, Loan Amount, Funded Amount, Interest Rate, and Installment.
+* **Borrower Profile:** Employment Length, Home Ownership (Mortgage, Rent, Own), and Debt-to-Income (DTI) ratio.
+* **Performance Metrics:**Loan Status (Fully Paid, Current, Charged Off), Total Payment Received, and Issue Date.
+  
 **Entity Relationship Diagram (ERD):**
 
-![Data Model](images/hr.datamodel.png)
+![Data Model](images/bl.datamodel.png)
 
 # Executive Summary
-The organization currently has **1,470** employees with an overall **Attrition Rate of 16.12%** (237 people have left). The **R&D department** accounts for over half of all attrition (**56.12%**). Most employees who leave are in the **25–34** age bracket, and a significant number come from a **Life Sciences** education background. While the average age is **37**, the "Under 25" and "25–34" groups show the highest vulnerability to leaving.
+The bank has processed a high volume of applications, with a clear distinction between profitable and high-risk segments. While the majority of the portfolio consists of **"Good Loans"** (Fully Paid and Current), there is a significant **"Bad Loan"** segment that requires immediate attention. Monthly trends show steady growth in applications, but the **Average DTI (Debt-to-Income)** indicates that many borrowers are heavily leveraged, which could lead to future defaults.
 
 **High-Level Metrics**
-* **Overall Employees**: 1,470
-* **Attrition**: 237
-* **Attrition Rate**: 16.12%
-* **Active Employees**: 1,233
-* **Average Age**: 37
+* **Total Loan Applications**: 29.13K
+* **Total Funded Amount**: $342.07M
+* **Total Amount Received**: $375.16M
+* **Average Interest Rate**: 12.20%
+* **Average DTI Ratio**: 13.49%
+* **Good Loan %**: 86.91%
+* **Bad Loan %**: 13.09%
+  
+**Summary**
+![Dashboard Overview](images/bl.summary.png)
 
-![Dashboard Overview](images/hr.dashboard2.png)
+**Overview**
+![Dashboard Overview](images/bl.overview.png)
 
 # Insights Deep Dive
-### Department Analysis: R&D as the Primary Attrition Driver
-* The R&D department has the highest attrition with **133** employees leaving, followed by Sales (**92**).
-* R&D represents more than half of the total company turnover. HR needs to investigate if this is due to high-pressure environments or uncompetitive pay in technical roles.
+### Regional Hotspots & Lending Gaps
+* Certain states show significantly higher application volumes and funded amounts than others.
+* High-volume regions often correlate with lower interest rates but higher total received amounts. Identifying "Cold" regions allows for targeted marketing to expand the portfolio.
 
-![Dashboard Overview](images/hr.department2.png)
+![Dashboard Overview](images/bl.states.png)
 
-### Age Group Analysis: High Turnover in Young Professionals
-  * The **25–34** age group has the highest number of departures (**112 employees**).
-  * This group makes up nearly **47%** of total attrition. Younger employees are likely leaving for better career growth opportunities elsewhere.
-![Dashboard Overview](images/hr.agegroup2.png)
+### Loan Purpose: Debt Consolidation Dominance
+  * "Debt Consolidation" is typically the #1 reason for loan applications, often carrying higher average loan amounts.
+  * Borrowers using loans to pay off other debts represent a "revolving risk." While they are a large customer segment, their DTI ratios must be monitored closely to prevent "Bad Loan" spikes.
+![Dashboard Overview](images/bl.debt.png)
 
-### Education Analysis: Life Sciences and Medical Fields
-* Employees with Life Sciences (**89**) and Medical (**63**) backgrounds are the most likely to leave.
-* There is a high demand for these skills in the market. The company may be losing specialized talent to competitors.
+### The Impact of Home Ownership on Risk
+* Borrowers with a **Mortgage** or those who **Rent** make up the largest percentage of applications, while "Owners" are a much smaller segment.
+* Renters often have a slightly higher default rate. Homeowners (with mortgages) tend to be more stable, likely due to having more to lose (collateral) and better credit histories.
   
-![Dashboard Overview](images/hr.education2.png)
+![Dashboard Overview](images/bl.mortgage.png)
 
-### Role & Satisfaction: Low Ratings in Laboratory and Sales
-* Laboratory Technicians and Sales Executives have some of the highest counts of "Level 1" (lowest) satisfaction scores.
-* These roles are high-stress. The data shows **56** Lab Techs gave the lowest satisfaction rating, which correlates with high attrition in the R&D department.
+### Term Analysis: 36 vs. 60 Months
+* Short-term loans (36 months) are more popular, but long-term loans (60 months) generate higher interest income.
+* Long-term loans carry a higher risk of turning into "Bad Loans" as the borrower's financial situation is more likely to change over 5 years compared to 3 years.
 
-![Dashboard Overview](images/hr.satisfactionanalysis.png)
+![Dashboard Overview](images/bl.term.png)
 
 # Recommendations
-* **R&D Retention Program**: Conduct "Stay Interviews" in the R&D department to understand why 56% of departures are happening there.
-* **Career Pathing for 25–34 Year Olds**: Since this group leaves the most, implement a clear 2-year promotion track to keep them engaged.
-* **Role-Specific Support**: Improve the working conditions for Laboratory Technicians and Sales Executives to raise their job satisfaction scores from Level 1 to Level 3.
+* **Tighten Credit for High DTI**: For applicants with a DTI above **15%**, consider implementing stricter income verification or slightly higher interest rates to offset the risk.
+* **Incentivize "Good" Borrowers**: Offer lower interest rates or "Top-up" loan options to borrowers in the **"Fully Paid"** category to encourage repeat business with low-risk customers.
+* **Address the 13.9% Bad Loan Rate**: Investigate the specific **Loan Purposes** and **Employment Lengths** associated with "Charged Off" status. If 1-year employees are defaulting more, increase the minimum employment requirement.
+* **Seasonal Campaigns**: Since application volumes fluctuate monthly, launch **"Low Interest"** promotions during slow months to maintain steady cash flow and staff utilization.
